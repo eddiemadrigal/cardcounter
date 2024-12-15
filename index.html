@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blackjack Card Counter</title>
+    <title>BlackJack Card Counter Calculator</title>
     <style>
         body {
             display: flex;
@@ -33,7 +33,6 @@
         }
         .buttons {
             display: flex;
-            flex-direction: column;
             justify-content: center;
             width: 100%;
             max-width: 400px;
@@ -62,9 +61,6 @@
             color: white;
         }
         @media (min-width: 768px) {
-            .buttons {
-                flex-direction: row;
-            }
             .button {
                 font-size: 3rem;
                 padding: 40px;
@@ -73,7 +69,7 @@
     </style>
 </head>
 <body>
-    <div class="title">Card Counter Tally</div>
+    <div class="title">BlackJack Card Counter Calculator</div>
     <div class="count-display" id="count">0</div>
     <div class="buttons">
         <div class="button green" id="addButton">+1</div>
