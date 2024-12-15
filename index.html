@@ -33,17 +33,22 @@
         }
         .buttons {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             width: 100%;
             max-width: 400px;
             margin-top: 30px;
             gap: 15px;
         }
+        .button-group {
+            display: flex;
+            gap: 15px;
+        }
         .button {
             flex: 1;
             text-align: center;
             font-size: 2rem;
-            padding: 100px 20px;
+            padding: 20px;
             cursor: pointer;
             border-radius: 10px;
             transition: transform 0.2s;
@@ -60,6 +65,13 @@
             background-color: red;
             color: white;
         }
+        .button.reset {
+            background-color: #444;
+            color: white;
+            font-size: 1.5rem;
+            padding: 15px;
+            width: 100%;
+        }
         @media (min-width: 768px) {
             .button {
                 font-size: 3rem;
@@ -72,30 +84,48 @@
     <div class="title">BlackJack Card Counter Calculator</div>
     <div class="count-display" id="count">0</div>
     <div class="buttons">
-        <div class="button green" id="addButton">+1</div>
-        <div class="button red" id="subtractButton">-1</div>
+        <div class="button-group">
+            <div class="button green" id="addButton">+1</div>
+            <div class="button red" id="subtractButton">-1</div>
+        </div>
+        <div class="button reset" id="resetButton">Reset</div>
     </div>
 
     <script>
-        let count = 0;
+        // Load count from sessionStorage or initialize to 0
+        let count = parseInt(sessionStorage.getItem('count')) || 0;
 
         const countDisplay = document.getElementById('count');
         const addButton = document.getElementById('addButton');
         const subtractButton = document.getElementById('subtractButton');
+        const resetButton = document.getElementById('resetButton');
 
+        // Update display
+        function updateDisplay() {
+            countDisplay.textContent = count > 0 ? `+${count}` : count;
+            sessionStorage.setItem('count', count); // Save to sessionStorage
+        }
+
+        // Add button event
         addButton.addEventListener('click', () => {
             count++;
             updateDisplay();
         });
 
+        // Subtract button event
         subtractButton.addEventListener('click', () => {
             count--;
             updateDisplay();
         });
 
-        function updateDisplay() {
-            countDisplay.textContent = count > 0 ? `+${count}` : count;
-        }
+        // Reset button event
+        resetButton.addEventListener('click', () => {
+            count = 0;
+            updateDisplay();
+        });
+
+        // Initialize display with saved count
+        updateDisplay();
     </script>
 </body>
 </html>
